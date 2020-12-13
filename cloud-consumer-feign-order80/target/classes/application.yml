@@ -1,0 +1,23 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: consul-consumer-feign-order80
+
+eureka:
+  client:
+    register-with-eureka: false #表示是否将自己注册到注册中心
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+
+#设置Feign客户端超时时间（OpenFeign默认支持Ribbon）
+ribbon:
+  #指的是建立连接所用的时间，适用于网络状况正常的情况下，两端连接所用的时间
+  ReadTimeout: 5000
+  #指的是建立连接之后，从服务端接收到可用资源所用的时间
+  ConnectTimeout: 5000
+logging:
+  level:
+    #Feign日志以什么级别监控哪个接口
+    com.jzt.service.PaymentFeignService: debug
